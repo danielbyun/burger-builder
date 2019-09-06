@@ -16,13 +16,16 @@ const buildControls = props => (
     </p>
     {controls.map(ctrl => (
       <BuildControl
-        key={ctrl.labell}
+        key={ctrl.label}
         label={ctrl.label}
         added={() => props.ingredientAdded(ctrl.type)}
         removed={() => props.ingredientRemoved(ctrl.type)}
         disabled={props.disabled[ctrl.type]}
       />
     ))}
+    <button className="OrderButton" disabled={!props.purchasable}>
+      Order Now!
+    </button>
   </div>
 );
 
