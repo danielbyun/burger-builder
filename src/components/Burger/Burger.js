@@ -1,5 +1,6 @@
 import React from "react";
 import BurgerIngredient from "./BurgerIngredient/BurgerIngredient";
+import classes from "./Burger.module.css";
 
 const burger = props => {
   // converting objects to arrays
@@ -23,7 +24,7 @@ const burger = props => {
   console.log(transformedIngredients);
 
   return (
-    <div className="Burger">
+    <div className={classes.Burger}>
       <BurgerIngredient type="bread-top" />
       {transformedIngredients}
       <BurgerIngredient type="bread-bottom" />
