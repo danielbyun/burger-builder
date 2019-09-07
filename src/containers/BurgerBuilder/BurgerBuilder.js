@@ -4,6 +4,7 @@ import Burger from "../../components/Burger/Burger";
 import BuildControls from "../../components/Burger/BuildControls/BuildControls";
 import Modal from "../../components/UI/Modal/Modal";
 import OrderSummary from "../../components/Burger/OrderSummary/OrderSummary";
+import axios from "../../axios-orders";
 
 const INGREDIENT_PRICES = {
   salad: 0.5,
@@ -66,8 +67,29 @@ class BurgerBuilder extends Component {
     this.setState({ purchasing: false });
   };
 
+  // send /POST
   purchaseContinueHandler = () => {
-    alert("You're going to purdhase this burger");
+    // firebase specific
+    const order = {
+      ingredients: this.state.ingredients,
+      // not recommended for production code
+      price: this.state.totalPrice,
+      customer: {
+        name: "Max ehs'german",
+        address: {
+          street: "Teststreet",
+          state: "NY",
+          zipCode: "11752",
+          country: "United STates"
+        },
+        email: "test@test.com"
+      },
+      deliveryMethod: "premium"
+    };
+    axios
+      .post(`/orders.json`, order)
+      .then(response => console.log(response))
+      .catch(error => console.log(error));
   };
 
   removeIngredientHandler = type => {
