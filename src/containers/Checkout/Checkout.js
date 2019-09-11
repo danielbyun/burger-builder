@@ -13,7 +13,7 @@ class Checkout extends Component {
     }
   };
 
-  componentDidMount() {
+  componentWillMount() {
     const query = new URLSearchParams(this.props.location.search);
     const ingredients = {};
     let price = 0;
@@ -36,7 +36,7 @@ class Checkout extends Component {
   };
 
   checkoutContinuedHandler = () => {
-    this.props.history.replace("/checkout/contract-data");
+    this.props.history.replace("/checkout/contact-data");
   };
 
   render() {
