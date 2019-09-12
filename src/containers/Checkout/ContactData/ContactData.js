@@ -7,6 +7,72 @@ import Input from "../../../components/UI/Input/Input";
 
 class ContactData extends Component {
   state = {
+    orderForm: {
+      customer: {
+        name: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "Your Name"
+          },
+          value: ""
+        },
+        street: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "Street"
+          },
+          value: ""
+        },
+        state: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "State"
+          },
+          value: ""
+        },
+        zipCode: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "Zipcode"
+          },
+          value: ""
+        },
+        country: {
+          elementType: "input",
+          elementConfig: {
+            type: "text",
+            placeholder: "Country"
+          },
+          value: ""
+        },
+        email: {
+          elementType: "input",
+          elementConfig: {
+            type: "email",
+            placeholder: "Your Email"
+          },
+          value: ""
+        },
+        deliveryMethod: {
+          elementType: "select",
+          elementConfig: {
+            option: [
+              {
+                value: "premium",
+                displayValue: "fastest"
+              },
+              { value: "gold", displayValue: "fast" },
+              { value: "economoy", displayValue: "cheapest" }
+            ]
+          },
+          value: ""
+        }
+      }
+    },
     name: "",
     email: "",
     address: {
@@ -34,18 +100,7 @@ class ContactData extends Component {
     const order = {
       ingredients: this.props.ingredients,
       // not recommended for production code
-      price: this.state.price,
-      customer: {
-        name: "Max ehs'german",
-        address: {
-          street: "Teststreet",
-          state: "NY",
-          zipCode: "11752",
-          country: "United STates"
-        },
-        email: "test@test.com"
-      },
-      deliveryMethod: "premium"
+      price: this.state.price
     };
 
     console.log(order);
@@ -66,12 +121,7 @@ class ContactData extends Component {
   render() {
     let form = (
       <form>
-        <Input
-          inputtype="input"
-          type="text"
-          name="name"
-          placeholder="your name"
-        />
+        <Input elementType="..." elementConfig="..." value="..." />
         <Input
           inputtype="input"
           type="email"
