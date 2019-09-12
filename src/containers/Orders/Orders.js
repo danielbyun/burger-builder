@@ -15,12 +15,15 @@ class Orders extends Component {
       .get("/orders.json")
       .then(res => {
         const fetchedOrders = [];
+
+        // convert from javascript objects to arrays from firebase
         for (let key in res.data) {
           fetchedOrders.push({
             ...res.data[key],
             id: key
           });
         }
+
         this.setState({ loading: false, orders: fetchedOrders });
       })
       .catch(err => {
