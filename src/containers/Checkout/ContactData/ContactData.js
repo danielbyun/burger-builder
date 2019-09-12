@@ -149,14 +149,14 @@ class ContactData extends Component {
 
     if (rules.required) {
       // update true or false depending on the check value if it is not equal to empty string
-      isValid = value.trim() !== " ";
+      isValid = value.trim() !== " " && isValid;
     }
 
     if (rules.minLength) {
       // expect value to be 1, 2, 3...so on
-      isValid = value.length >= rules.minLength;
+      isValid = value.length >= rules.minLength && isValid;
     } else if (rules.maxLength) {
-      isValid = value.length <= rules.maxLength;
+      isValid = value.length <= rules.maxLength && isValid;
     }
 
     return isValid;
@@ -201,6 +201,8 @@ class ContactData extends Component {
             elementType={formElement.config.elementType}
             elementConfig={formElement.config.elementConfig}
             value={formElement.config.value}
+            invalid={!formElement.config.valid}
+            shouldValidate={formElement.config.validation}
             changed={event => this.inputChangedHandler(event, formElement.id)}
           />
         ))}
