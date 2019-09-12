@@ -86,22 +86,30 @@ class ContactData extends Component {
   };
 
   orderHandler = e => {
+    // to not submit and refresh the page
     e.preventDefault();
-
-    console.log(this.props.ingredients);
 
     this.setState({
       loading: true
     });
 
+    // transforming object
+    const formData = {};
+    // creating key/value pairs
+    for (let formElementIdentifier in this.state.orderForm) {
+      // key (email, name, etc) = value the user entered
+      formData[formElementIdentifier] = this.state.orderForm[
+        formElementIdentifier
+      ].value;
+    }
+
     // firebase specific
     const order = {
       ingredients: this.props.ingredients,
       // not recommended for production code
-      price: this.state.price
+      price: this.state.price,
+      orderData: formData
     };
-
-    console.log(order);
 
     axios
       .post(`/orders.json`, order)
@@ -145,7 +153,7 @@ class ContactData extends Component {
     }
 
     let form = (
-      <form>
+      <form onSubmit={this.orderHandler}>
         {formElementsArray.map(formElement => (
           <Input
             key={formElement.id}
@@ -155,9 +163,7 @@ class ContactData extends Component {
             changed={event => this.inputChangedHandler(event, formElement.id)}
           />
         ))}
-        <Button btnType="Success" clicked={this.orderHandler}>
-          ORDER
-        </Button>
+        <Button btnType="Success">ORDER</Button>
       </form>
     );
     if (this.state.loading) {
