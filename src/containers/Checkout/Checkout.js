@@ -46,6 +46,7 @@ class Checkout extends Component {
       ) : null;
       summary = (
         <>
+          {purchasedRedirect}
           <CheckoutSummary
             ingredients={this.props.ings}
             checkoutCancelled={this.checkoutCancelledHandler}
@@ -65,20 +66,14 @@ class Checkout extends Component {
         </>
       );
     }
-    return { summary };
+    return summary;
   }
 }
 
 const mapStateToProps = state => {
   return {
-    ings: state.burgerBuidler.ingredients,
+    ings: state.burgerBuilder.ingredients,
     purchased: state.order.purchased
-  };
-};
-
-const mapDispatchToProps = dispatch => {
-  return {
-    onInitPurchase: () => dispatch(actions.purchaseInit())
   };
 };
 

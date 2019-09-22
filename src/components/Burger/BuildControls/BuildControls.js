@@ -1,5 +1,6 @@
 import React from "react";
-import "./BuildControls.css";
+
+import classes from "./BuildControls.module.css";
 import BuildControl from "./BuildControl/BuildControl";
 
 const controls = [
@@ -10,7 +11,7 @@ const controls = [
 ];
 
 const buildControls = props => (
-  <div className="BuildControls">
+  <div className={classes.BuildControls}>
     <p>
       Current Price: <strong>{props.price.toFixed(2)}</strong>
     </p>
@@ -24,11 +25,11 @@ const buildControls = props => (
       />
     ))}
     <button
-      className="OrderButton"
+      className={classes.OrderButton}
       disabled={!props.purchasable}
       onClick={props.ordered}
     >
-      Order Now!
+      ORDER NOW
     </button>
   </div>
 );
